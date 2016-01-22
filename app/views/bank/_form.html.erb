@@ -20,7 +20,7 @@
         <%= number_field_tag "number_of_entries" ,nil,placeholder:"Enter Value" ,min: 1, step: 1,required: true%>
       </div><br>
       <div align="center">
-      <%= file_field_tag 'transaction_pdf',required:true%>
+      <%= file_field_tag 'transaction_pdf',accept: 'application/pdf',required:true%>
       <div class="submit-sec">
 
         <%= submit_tag "SUBMIT"%>
