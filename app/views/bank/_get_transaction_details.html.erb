@@ -1,0 +1,32 @@
+
+ <% if @transactions.blank? %>
+     No use
+<% else%>
+   <% if @transactions[:success] == false %>
+       <div class="failure-msg">
+         <b>*Failure to get data -- <%= @transactions[:msg]%></b>
+       </div>
+   <%else%>
+
+     <table class="table-transaction frTBClass bottomMargin" border="1" cellpadding="0" cellspacing="0" >
+       <tr style="font-weight: bold; background-color: #9f9f9f; text-align: center;">
+         <td style="width: 125px;">Date</td>
+         <td style="width: 125px;">Name</td>
+         <td style="width: 325px;" >Narration</td>
+         <td style="width: 125px;" >Debit</td>
+         <td style="width: 125px;" >Credit </td>
+         <td style="width: 175px;" >Closing</td>
+       </tr>
+       <% @transactions[:transaction_details].each do |td| %>
+           <tr class="textmiddleAlign leftPadding"  style="text-align: center;vertical-align: middle;">
+             <td> <%= td[:date]  %></td>
+             <td><%= td[:name]%></td>
+             <td><%= td[:narration]%></td>
+             <td><%= td[:debit]%></td>
+             <td><%= td[:credit]%></td>
+             <td><%= td[:closing]%></td>
+           </tr>
+       <% end %>
+     </table>
+   <% end %>
+ <%end%>

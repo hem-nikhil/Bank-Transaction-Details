@@ -1,0 +1,33 @@
+<div class="form-class" >
+  <%= form_tag(transaction_details_path(format: :js) ,method: 'post', remote: true, multipart: true ) do %>
+      <div class="field-class ifsc-sec">
+        <%=  label_tag 'ifsc_code', 'IFSC Code:' %>
+        <%= text_field_tag "ifsc_code",nil,maxlength: 11,placeholder:"Enter 11 digit code" ,autofocus: true ,onblur: "getBankName()",required: true%>
+        </div>
+      <div class="field-class search-sec" style="float: left;">
+        <%=  label_tag 'Search By:' %>
+        <%= select_tag "search_key", options_for_select(["Date", "Narration", "Debit","Credit"],"Date") %>
+        <%= date_field_tag 'search_value',nil ,required:true,size: 30%>
+      </div><br>
+
+      <div class="field-class bank-name-sec">
+        <%=  label_tag 'bank_name', 'Bank Name:' %>
+        <%= text_field_tag "bank_name" ,nil,disabled: true,size: 60 %>
+      </div><br>
+
+      <div class="field-class entries-sec ">
+        <%=  label_tag 'number_of_entries', 'Number of Entries:' %>
+        <%= number_field_tag "number_of_entries" ,nil,placeholder:"Enter Value" ,min: 1, step: 1,required: true%>
+      </div><br>
+      <div align="center">
+      <%= file_field_tag 'transaction_pdf',required:true%>
+      <div class="submit-sec">
+
+        <%= submit_tag "SUBMIT"%>
+        </div>
+      </div><br>
+
+
+
+  <% end %>
+</div>

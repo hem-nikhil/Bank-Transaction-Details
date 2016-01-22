@@ -1,0 +1,49 @@
+<div class="header" align='center'><h1 >******  RetailLending.com ****** </h1></div><br>
+
+<div class="transaction-search-form" style="background-color: #B0E0E6">
+  <%= render partial: 'form' %>
+</div>
+
+<br><br>
+<div id="transaction-table" class="transaction-table" align="center"></div>
+
+<script>
+
+  function getBankName(){
+    var ifsc_code = document.getElementById("ifsc_code").value;
+    $.ajax({
+      type:'GET', 
+            url: '/bank-name',
+            data: $.param({ ifsc_code: ifsc_code }),
+        success: function(response){
+          if(response.success){
+            document.getElementById("bank_name").value = response.bank_name;
+          }else{
+            alert("error from getting bank name");
+          }
+        },
+        error:function(response){
+          alert("error");
+        }
+      });
+  }
+
+</script>
+<script>
+  $("#search_key").change(function() {
+    var val = $(this).val();
+    if (val == "Narration") {
+      $("#search_value").attr("type", "text");
+    } else if (val == "Date") {
+      $("#search_value").attr("type", "date");
+    } else  {
+      $("#search_value").attr("type", "number");
+      $("#search_value").attr("min", "1");
+    }
+  });
+
+
+
+
+
+</script>
